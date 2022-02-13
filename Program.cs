@@ -1,17 +1,22 @@
 ﻿int n = 101;
 bool[] b = new bool[n + 1];
-List<int> S = new List<int>();
+int[] primes = new int[n];
+int index = -1;
 for (int i = 2; i <= n; i++)
 {
     if (!b[i])
-        S.Add(i);
-    foreach (int j in S)
     {
-        int k = i * j;
+        index++;
+        primes[index] = i;
+    }
+    for (int j = 0; j <= index; j++)
+    {
+        int k = i * primes[j];
         if (k > n) break;
         b[k] = true;
-        if (i % j == 0) break;
+        if (i % primes[j] == 0) break;
     }
+
 }
-foreach(int i in S)
-    Console.WriteLine(i);
+for (int i = 0; i <= index; i++)
+    Console.WriteLine(primes[i]);
